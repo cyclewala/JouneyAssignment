@@ -41,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             navigateToActivity()
             finish()
-        }, 500)
+        }, 700)
     }
 
     private fun navigateToActivity() {

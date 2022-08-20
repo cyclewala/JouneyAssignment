@@ -14,6 +14,6 @@ interface CommentDao {
     suspend fun insertAll(commentList: List<Comment>)
 
     @Query("SELECT * from comment where postId = :postId")
-    fun getAllCommentsForPostId(postId: Int): LiveData<List<Comment>>
+    fun getAllCommentsForPostId(postId: String): LiveData<List<Comment>>
 
 }
