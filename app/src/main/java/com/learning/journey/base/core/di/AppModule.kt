@@ -8,6 +8,11 @@ import com.learning.journey.base.core.constant.AppConstants
 import com.learning.journey.base.core.data.persistent.AppDatabase
 import com.learning.journey.base.core.network.NetworkInterceptor
 import com.learning.journey.base.core.utils.BaseHeaderUtil
+import com.learning.journey.content.data.remote.datasource.ContentDataSource
+import com.learning.journey.content.data.remote.service.ContentAPIService
+import com.learning.journey.content.data.repository.ContentRepository
+import com.learning.journey.posts.data.local.CommentDao
+import com.learning.journey.posts.data.local.PostDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,5 +74,25 @@ object AppModule {
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) =
         AppDatabase.getDatabase(appContext)
+
+    @Singleton
+    @Provides
+    fun providePostDao(db: AppDatabase) = db.postDao()
+
+    @Singleton
+    @Provides
+    fun provideCommentDao(db: AppDatabase) = db.commentDao()
+
+    @Singleton
+    @Provides
+    fun provideContentRepository(
+        dataSource: ContentDataSource,
+        postDao: PostDao,
+        commentDao: CommentDao,
+    ) = ContentRepository(dataSource, postDao, commentDao)
+
+    @Provides
+    fun provideContentAPIService(retrofit: Retrofit): ContentAPIService =
+        retrofit.create(ContentAPIService::class.java)
 
 }

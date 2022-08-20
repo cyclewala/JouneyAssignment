@@ -8,11 +8,11 @@ object AppConstants {
 
     init {
         if (BuildConfig.BUILD_TYPE == "release") {
-            baseUrl = "https://api.edukite.info/"
+            baseUrl = "https://my-json-server.typicode.com/cyclewala/posts-data/"
         } else if (BuildConfig.BUILD_TYPE == "uat") {
-            baseUrl = "https://api.edukite-uat.info/"
+            baseUrl = "https://my-json-server.typicode.com/cyclewala/posts-data/"
         } else {
-            baseUrl = "https://api.edukite-dev.info/"
+            baseUrl = "https://my-json-server.typicode.com/cyclewala/posts-data/"
         }
     }
 
