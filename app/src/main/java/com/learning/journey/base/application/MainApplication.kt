@@ -1,12 +1,10 @@
 package com.learning.journey.base.application
 
 import android.app.Application
-import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.work.Configuration
-import com.learning.journey.base.core.utils.NetworkLiveData
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -19,10 +17,6 @@ class MainApplication : Application(), Configuration.Provider, LifecycleObserver
 
     companion object {
         private var instance: MainApplication? = null
-
-        fun applicationContext(): Context {
-            return instance!!.applicationContext
-        }
     }
 
     @Inject
@@ -34,14 +28,8 @@ class MainApplication : Application(), Configuration.Provider, LifecycleObserver
 
     }
 
-
-    fun getContext(): Context {
-        return applicationContext
-    }
-
     private fun init() {
         initProcessLifecycleOwner()
-        initNetworkLiveData()
     }
 
     private fun initProcessLifecycleOwner() {
@@ -52,9 +40,5 @@ class MainApplication : Application(), Configuration.Provider, LifecycleObserver
         Configuration.Builder()
             .setWorkerFactory(workerFactory)
             .build()
-
-    private fun initNetworkLiveData() {
-        NetworkLiveData.init(this)
-    }
 
 }

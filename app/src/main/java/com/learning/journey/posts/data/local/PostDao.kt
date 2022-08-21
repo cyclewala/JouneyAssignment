@@ -16,4 +16,7 @@ interface PostDao {
     @Query("SELECT * from post")
     fun getAllPosts(): LiveData<List<Post>>
 
+    @Query("SELECT * from post where (title LIKE '%' || :searchText || '%') || (description LIKE '%' || :searchText || '%')")
+    fun getAllPostsForText(searchText: String): List<Post>
+
 }

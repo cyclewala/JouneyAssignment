@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 open class BaseAppCompatActivity : AppCompatActivity() {
 
-    val tag = "BaseAppCompatActivity"
-
     companion object {
         lateinit var activity: AppCompatActivity
         private var activityStackCount: Int = 0

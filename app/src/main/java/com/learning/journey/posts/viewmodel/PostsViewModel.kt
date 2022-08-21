@@ -17,6 +17,10 @@ class PostsViewModel @Inject constructor(
         return contentRepository.getAllPosts()
     }
 
+    fun getAllPostsForText(searchText: String): List<Post> {
+        return contentRepository.getAllPostsForText(searchText)
+    }
+
     fun getAllCommentsForPostId(postId: String): LiveData<List<Comment>> {
         return contentRepository.getAllCommentsForPostId(postId)
     }

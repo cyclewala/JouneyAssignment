@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_post"
-        android:name="com.learning.journey.posts.ui.PostsFragment"
+        android:name="com.learning.journey.posts.view.ui.PostsFragment"
         android:label="@string/posts_title"
         tools:layout="@layout/fragment_posts">
 
@@ -19,12 +19,38 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
 
+
+        <action
+            android:id="@+id/action_navigation_post_to_navigation_search_post"
+            app:destination="@id/navigation_search_post"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
+
     </fragment>
 
     <fragment
         android:id="@+id/navigation_post_detail"
-        android:name="com.learning.journey.posts.ui.PostDetailFragment"
+        android:name="com.learning.journey.posts.view.ui.PostDetailFragment"
         android:label="@string/posts_detail_title"
-        tools:layout="@layout/fragment_post_detail"></fragment>
+        tools:layout="@layout/fragment_post_detail" />
+
+    <fragment
+        android:id="@+id/navigation_search_post"
+        android:name="com.learning.journey.posts.view.ui.SearchPostsFragment"
+        android:label="@string/search_posts_title"
+        tools:layout="@layout/fragment_search_posts">
+
+        <action
+            android:id="@+id/action_navigation_search_post_to_navigation_post_detail"
+            app:destination="@id/navigation_post_detail"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
+    </fragment>
 
 </navigation>

@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".posts.ui.PostsActivity"
+            android:name=".posts.view.ui.PostsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/posts_title"
             android:launchMode="singleTask" />

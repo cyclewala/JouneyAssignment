@@ -32,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "learningjourney.db")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, "learning_journey.db")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()

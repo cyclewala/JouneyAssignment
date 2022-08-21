@@ -33,6 +33,8 @@ class ContentRepository @Inject constructor(
 
     fun getAllPosts() = postDao.getAllPosts()
 
+    fun getAllPostsForText(searchText: String) = postDao.getAllPostsForText(searchText)
+
     fun getAllCommentsForPostId(postId: String) = commentDao.getAllCommentsForPostId(postId)
 
 }

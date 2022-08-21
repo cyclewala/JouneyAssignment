@@ -1,4 +1,4 @@
-package com.learning.journey.posts.ui
+package com.learning.journey.posts.view.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -53,7 +53,7 @@ class PostDetailFragment : Fragment() {
 
     private fun getDataFromBundle() {
         if (arguments != null && requireArguments().containsKey("post")) {
-            post = requireArguments().getParcelable<Post>("post")
+            post = requireArguments().getParcelable("post")
         }
     }
 
@@ -84,9 +84,9 @@ class PostDetailFragment : Fragment() {
 
     private fun fetchAllComments() {
         post?.let {
-            postsViewModel.getAllCommentsForPostId(it.id).observe(viewLifecycleOwner) {
+            postsViewModel.getAllCommentsForPostId(it.id).observe(viewLifecycleOwner) { comments ->
                 commentList.clear()
-                commentList.addAll(it)
+                commentList.addAll(comments)
                 commentListAdapter.setCommentList(commentList)
             }
         }

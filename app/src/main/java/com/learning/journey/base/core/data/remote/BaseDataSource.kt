@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder
 import com.learning.journey.BuildConfig
 import com.learning.journey.base.core.data.Resource
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import okio.Buffer
 import retrofit2.Response
 import java.io.IOException
@@ -30,10 +29,10 @@ abstract class BaseDataSource {
                             "API Request : " + Gson().toJson(response.raw().request.url.toUri()
                                 .toString())
                         )
-                        var bodyString = response.raw().request.body?.let { bodyToString(it) }
+                        val bodyString = response.raw().request.body?.let { bodyToString(it) }
                         Log.d(
                             "##ApiCall##",
-                            "API Request Body : " + bodyString
+                            "API Request Body : $bodyString"
                         )
                         Log.d("##ApiCall##", "API Response : " + Gson().toJson(body))
                     }
@@ -81,14 +80,6 @@ abstract class BaseDataSource {
             val buffer = Buffer()
             if (request != null) request.writeTo(buffer) else return ""
             buffer.readUtf8()
-        } catch (e: IOException) {
-            "did not work"
-        }
-    }
-
-    private fun responseBodyToString(responseBody: ResponseBody): String? {
-        return try {
-            responseBody.string()
         } catch (e: IOException) {
             "did not work"
         }

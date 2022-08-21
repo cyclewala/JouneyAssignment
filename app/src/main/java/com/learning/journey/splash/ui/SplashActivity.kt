@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.learning.journey.R
 import com.learning.journey.content.data.viewmodel.ContentViewModel
 import com.learning.journey.databinding.ActivitySplashBinding
-import com.learning.journey.posts.ui.PostsActivity
+import com.learning.journey.posts.view.ui.PostsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

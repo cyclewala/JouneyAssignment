@@ -12,11 +12,11 @@ import com.learning.journey.posts.view.callback.PostListItemCallback
 
 class PostListAdapter(
     private var postList: MutableList<Post>,
-    var listener: PostListAdapterListener,
+    listener: PostListAdapterListener,
 ) :
     RecyclerView.Adapter<PostListAdapter.PostItemViewHolder>() {
 
-    val postListItemCallback: PostListItemCallback = PostListItemCallback(listener)
+    private val postListItemCallback: PostListItemCallback = PostListItemCallback(listener)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder {
         val listItemPostBinding: ListItemPostBinding = DataBindingUtil.inflate(

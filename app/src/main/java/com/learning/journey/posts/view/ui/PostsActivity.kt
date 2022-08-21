@@ -1,4 +1,4 @@
-package com.learning.journey.posts.ui
+package com.learning.journey.posts.view.ui
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat

@@ -3,4 +3,8 @@
     <string name="posts_title">Posts</string>
     <string name="posts_detail_title">Post Detail</string>
     <string name="comments_title">Comments</string>
+
+    <string name="search_posts_title">Search Posts</string>
+    <string name="search_hint">Search</string>
+
 </resources>

@@ -18,21 +18,16 @@ class NetworkInterceptor @Inject constructor(baseHeaderUtil: BaseHeaderUtil) : I
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request()
         try {
-            if (localBaseHeaderUtil != null && request.url.toUri().toString().contains(".zip")
-                    .not()
-            ) {
-                val headers = this.localBaseHeaderUtil?.prepareHeaderMap()
-                var requestBuilder: Request.Builder = request.newBuilder()
-                if (headers != null) {
-                    for (header in headers) {
-                        requestBuilder.addHeader(header.key, header.value)
-                    }
+            val headers = this.localBaseHeaderUtil?.prepareHeaderMap()
+            val requestBuilder: Request.Builder = request.newBuilder()
+            if (headers != null) {
+                for (header in headers) {
+                    requestBuilder.addHeader(header.key, header.value)
                 }
-                return chain.proceed(requestBuilder.build())
             }
-            return chain.proceed(request.newBuilder().build())
+            return chain.proceed(requestBuilder.build())
         } catch (e: Exception) {
-            Log.e("NetworkInteraceptor", e.localizedMessage)
+            Log.e("NetworkInterceptor", e.localizedMessage)
         }
         return chain.proceed(request.newBuilder().build())
     }
