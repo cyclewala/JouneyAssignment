@@ -5,6 +5,7 @@
     <string name="comments_title">Comments</string>
 
     <string name="search_posts_title">Search Posts</string>
+    <string name="search_comments_title">Search Comments</string>
     <string name="search_hint">Search</string>
 
 </resources>

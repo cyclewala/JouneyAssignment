@@ -16,4 +16,7 @@ interface CommentDao {
     @Query("SELECT * from comment where postId = :postId")
     fun getAllCommentsForPostId(postId: String): LiveData<List<Comment>>
 
+    @Query("SELECT * from comment where postId = :postId AND (body LIKE '%' || :searchText || '%')")
+    fun getAllCommentsForText(postId: String, searchText: String): List<Comment>
+
 }

@@ -1,6 +1,7 @@
 package com.learning.journey.content.data.repository
 
 import com.learning.journey.base.core.data.Resource
+import com.learning.journey.base.core.data.persistent.entities.Comment
 import com.learning.journey.content.data.remote.datasource.ContentDataSource
 import com.learning.journey.content.data.remote.response.ContentAPIResponse
 import com.learning.journey.posts.data.local.CommentDao
@@ -36,5 +37,8 @@ class ContentRepository @Inject constructor(
     fun getAllPostsForText(searchText: String) = postDao.getAllPostsForText(searchText)
 
     fun getAllCommentsForPostId(postId: String) = commentDao.getAllCommentsForPostId(postId)
+
+    fun getAllCommentsForText(postId: String, searchText: String): List<Comment> =
+        commentDao.getAllCommentsForText(postId, searchText)
 
 }

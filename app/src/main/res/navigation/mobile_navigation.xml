@@ -35,7 +35,17 @@
         android:id="@+id/navigation_post_detail"
         android:name="com.learning.journey.posts.view.ui.PostDetailFragment"
         android:label="@string/posts_detail_title"
-        tools:layout="@layout/fragment_post_detail" />
+        tools:layout="@layout/fragment_post_detail">
+
+        <action
+            android:id="@+id/action_navigation_post_detail_to_navigation_search_comment"
+            app:destination="@id/navigation_search_comment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_search_post"
@@ -52,5 +62,11 @@
             app:popExitAnim="@anim/fade_out" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search_comment"
+        android:name="com.learning.journey.posts.view.ui.SearchCommentsFragment"
+        android:label="@string/search_comments_title"
+        tools:layout="@layout/fragment_search_comments" />
 
 </navigation>

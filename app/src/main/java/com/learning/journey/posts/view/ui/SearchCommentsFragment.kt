@@ -1,6 +1,8 @@
 package com.learning.journey.posts.view.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,74 +16,47 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.journey.R
 import com.learning.journey.base.core.data.persistent.entities.Comment
-import com.learning.journey.base.core.data.persistent.entities.Post
-import com.learning.journey.databinding.FragmentPostDetailBinding
+import com.learning.journey.databinding.FragmentSearchCommentsBinding
 import com.learning.journey.posts.view.adapter.CommentListAdapter
 import com.learning.journey.posts.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class PostDetailFragment : Fragment() {
+class SearchCommentsFragment : Fragment() {
 
     private val postsViewModel: PostsViewModel by lazy {
         ViewModelProvider(this)[PostsViewModel::class.java]
     }
 
-    private lateinit var binding: FragmentPostDetailBinding
-
-    private var post: Post? = null
-    private var commentList: MutableList<Comment> = mutableListOf()
-
+    private lateinit var binding: FragmentSearchCommentsBinding
     private lateinit var commentRecyclerView: RecyclerView
     private lateinit var commentListAdapter: CommentListAdapter
+
+    private var commentList: MutableList<Comment> = mutableListOf()
+    private var searchText: String = ""
+    private var postId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post_detail, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_search_comments, container, false)
         init()
         return binding.root
     }
 
     private fun init() {
         getDataFromBundle()
-        initView()
-        initToolbar()
-        initClickListener()
         initRecyclerView()
-        fetchAllComments()
+        initToolbar()
+        initTextWatcher()
     }
 
     private fun getDataFromBundle() {
-        if (arguments != null && requireArguments().containsKey("post")) {
-            post = requireArguments().getParcelable("post")
-        }
-    }
-
-    private fun initView() {
-        post?.let {
-            binding.post = it
-        }
-    }
-
-    private fun initToolbar() {
-        val toolbar: Toolbar = binding.toolbarPostDetail
-        toolbar.setNavigationOnClickListener {
-            NavHostFragment.findNavController(this@PostDetailFragment).popBackStack()
-        }
-    }
-
-    private fun initClickListener() {
-        binding.ivSearch.setOnClickListener {
-            val bundle = Bundle()
-            post?.let {
-                bundle.putString("postId", it.id)
-            }
-            NavHostFragment.findNavController(this@PostDetailFragment)
-                .navigate(R.id.action_navigation_post_detail_to_navigation_search_comment, bundle)
+        if (arguments != null && requireArguments().containsKey("postId")) {
+            postId = requireArguments().getString("postId")
         }
     }
 
@@ -95,18 +70,47 @@ class PostDetailFragment : Fragment() {
             commentRecyclerView.addItemDecoration(
                 DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
             commentRecyclerView.adapter = commentListAdapter
+        }
+    }
+
+    private fun initToolbar() {
+        val toolbar: Toolbar = binding.toolbarSearchComment
+        toolbar.setNavigationOnClickListener {
+            NavHostFragment.findNavController(this@SearchCommentsFragment).popBackStack()
+        }
+    }
+
+    private fun initTextWatcher() {
+        binding.edSearch.addTextChangedListener(textWatcher)
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            searchText = s.toString().trim()
+            if (searchText.isNotEmpty()) {
+                callSearchCommentsApi(searchText)
+            } else {
+                commentList.clear()
+                commentListAdapter.setCommentList(commentList)
+            }
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
 
         }
     }
 
-    private fun fetchAllComments() {
-        post?.let {
-            postsViewModel.getAllCommentsForPostId(it.id).observe(viewLifecycleOwner) { comments ->
-                commentList.clear()
-                commentList.addAll(comments)
-                commentListAdapter.setCommentList(commentList)
-            }
+    private fun callSearchCommentsApi(searchText: String) {
+        postId?.let {
+            val searchComments = postsViewModel.getAllCommentsForText(it, searchText)
+            commentList.clear()
+            commentList.addAll(searchComments)
+            commentListAdapter.setCommentList(commentList)
         }
+
     }
 
 }
