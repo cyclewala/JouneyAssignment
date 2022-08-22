@@ -78,7 +78,7 @@ abstract class BaseDataSource {
     private fun bodyToString(request: RequestBody): String? {
         return try {
             val buffer = Buffer()
-            if (request != null) request.writeTo(buffer) else return ""
+            request.writeTo(buffer)
             buffer.readUtf8()
         } catch (e: IOException) {
             "did not work"

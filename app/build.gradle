@@ -20,6 +20,21 @@ android {
         testInstrumentationRunner "com.learning.journey.CustomTestRunner"
     }
 
+    signingConfigs {
+        debug {
+            keyAlias "JourneyCodeTestDebug"
+            keyPassword "zPY0c0lc4w96"
+            storeFile file("../keystore/JourneyCodeTestDebug")
+            storePassword "zPY0c0lc4w96"
+        }
+        release {
+            keyAlias "JourneyCodeTest"
+            keyPassword "yBv3s72M9WaA"
+            storeFile file("../keystore/JourneyCodeTest")
+            storePassword "yBv3s72M9WaA"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -148,6 +163,7 @@ dependencies {
     testImplementation 'com.google.truth:truth:1.1.2'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
     testImplementation 'org.robolectric:robolectric:4.8'
+    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -156,13 +172,7 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
-
-    // For Robolectric tests.
-    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
-    // For instrumented tests.
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
 }

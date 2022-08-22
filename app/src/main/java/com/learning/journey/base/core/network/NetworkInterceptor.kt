@@ -27,7 +27,7 @@ class NetworkInterceptor @Inject constructor(baseHeaderUtil: BaseHeaderUtil) : I
             }
             return chain.proceed(requestBuilder.build())
         } catch (e: Exception) {
-            Log.e("NetworkInterceptor", e.localizedMessage)
+            Log.e("NetworkInterceptor", e.localizedMessage ?: "Technical Error")
         }
         return chain.proceed(request.newBuilder().build())
     }

@@ -17,7 +17,7 @@ object GlideUtil {
             try {
                 Glide.with(imageView).load(drawable)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
@@ -32,7 +32,7 @@ object GlideUtil {
                 Glide.with(imageView).load(url).diskCacheStrategy(DiskCacheStrategy.DATA)
                     .placeholder(placeHolder).into(imageView)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
@@ -47,7 +47,7 @@ object GlideUtil {
                 Glide.with(imageView).load(uri).diskCacheStrategy(DiskCacheStrategy.DATA)
                     .placeholder(placeHolder).into(imageView)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
@@ -62,7 +62,7 @@ object GlideUtil {
                 Glide.with(imageView).load(uri).diskCacheStrategy(DiskCacheStrategy.DATA)
                     .placeholder(placeHolder).into(imageView)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
@@ -81,7 +81,7 @@ object GlideUtil {
                     .override(width, height)
                     .placeholder(placeHolder).into(imageView)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
@@ -99,7 +99,7 @@ object GlideUtil {
                     .override(width, height)
                     .placeholder(placeHolder).into(imageView)
             } catch (e: Exception) {
-                Log.e("GlideUtil", e.localizedMessage)
+                Log.e("GlideUtil", e.localizedMessage ?: "Technical error")
             }
         }
     }
