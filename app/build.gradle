@@ -78,7 +78,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            buildConfigField "Boolean", "printNetworkLog", "false"
+            buildConfigField "Boolean", "printNetworkLog", "true"
             resValue "string", "app_name", "JourneyCodeTest"
             zipAlignEnabled true
             minifyEnabled true
