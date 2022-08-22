@@ -67,6 +67,18 @@ class JourneyDatabaseTest : TestCase() {
     }
 
     @Test
+    fun writeAndReadPostForSearchText() {
+        val postList = mutableListOf<Post>()
+        val post = Post("99", "Title", "Description", "")
+        postList.add(post)
+        runBlocking {
+            postDao.insertAll(postList)
+        }
+        val posts = postDao.getAllPostsForText("Description")
+        assertThat(posts.contains(post)).isTrue()
+    }
+
+    @Test
     fun writeAndReadComment() {
         val commentList = mutableListOf<Comment>()
         val comment = Comment("100", "comment body", "1")
@@ -77,6 +89,18 @@ class JourneyDatabaseTest : TestCase() {
         commentDao.getAllCommentsForPostId("1").observeForever {
             assertThat(it.contains(comment)).isTrue()
         }
+    }
+
+    @Test
+    fun writeAndReadCommentForSearchText() {
+        val commentList = mutableListOf<Comment>()
+        val comment = Comment("100", "comment body", "1")
+        commentList.add(comment)
+        runBlocking {
+            commentDao.insertAll(commentList)
+        }
+        val comments = commentDao.getAllCommentsForText("1", "comment")
+        assertThat(comments.contains(comment)).isTrue()
     }
 
 }

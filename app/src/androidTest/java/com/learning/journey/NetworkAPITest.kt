@@ -56,4 +56,12 @@ class NetworkAPITest : TestCase() {
         }
     }
 
+    @Test
+    fun contentAPIResponseTest() {
+        runBlocking {
+            val contentAPIResponse = contentAPIService.fetchContent().body()
+            assertTrue(contentAPIResponse?.posts?.size!! > 0)
+        }
+    }
+
 }
