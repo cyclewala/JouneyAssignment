@@ -12,6 +12,11 @@
 
 ## Screenshots
 
+![List Of Posts Screen](screenshot_1.png)
+![Post Derail Screen](screenshot_2.png)
+![Search Post Screen](screenshot_3.png)
+![Search Comment Screen](screenshot_4.png)
+
 ## Followed below points to achieve result
 - MVVM design pattern followed
 - Retrofit used for network api call
