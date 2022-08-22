@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class) // Annotate with @RunWith
 class JourneyDatabaseTest : TestCase() {
-    // get reference to the LanguageDatabase and LanguageDao class
+    // get reference to the AppDatabase and PostDao & CommentDao class
     private lateinit var db: AppDatabase
     private lateinit var postDao: PostDao
     private lateinit var commentDao: CommentDao
