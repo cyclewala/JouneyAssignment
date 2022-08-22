@@ -24,13 +24,13 @@ android {
         debug {
             keyAlias "JourneyCodeTestDebug"
             keyPassword "zPY0c0lc4w96"
-            storeFile file("../keystore/JourneyCodeTestDebug")
+            storeFile file('../keystore/JourneyCodeTestDebug')
             storePassword "zPY0c0lc4w96"
         }
         release {
             keyAlias "JourneyCodeTest"
             keyPassword "yBv3s72M9WaA"
-            storeFile file("../keystore/JourneyCodeTest")
+            storeFile file('../keystore/JourneyCodeTest')
             storePassword "yBv3s72M9WaA"
         }
     }
@@ -84,6 +84,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
