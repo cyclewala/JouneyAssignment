@@ -21,6 +21,8 @@
 ## Followed below points to achieve result
 
 - MVVM design pattern followed
+- Jetpack Components : Room Framework (for local storage), Hilt Framework (dependency injection),
+  Navigation Component (screen navigations)
 - Retrofit used for network api call
 - Coroutines used to handle parallel api call and processing (without blocking main thread)
 - For localstorage jetpack >> room framework used
